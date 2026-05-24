@@ -99,13 +99,24 @@
         .btn-whatsapp { background: #25d366; }
         .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 
+        
         @media (max-width: 768px) {
             header { padding: 15px 0; }
             .nav-container { flex-direction: column; gap: 10px; text-align: center; }
             .nav-links { font-size: 0.9rem; }
-            #banner { min-height: 40vh; }
+            
+            /* O banner encolhe proporcionalmente exibindo as laterais */
+            #banner { 
+                min-height: auto; 
+                aspect-ratio: 16 / 9; /* Mantém o formato original da foto */
+                background-size: contain; 
+                background-repeat: no-repeat;
+                background-color: #000000; /* Preenche vazios se a tela for muito longa */
+            }
+            
             form { padding: 20px; }
         }
+
     </style>
 </head>
 <body>
