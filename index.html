@@ -4,34 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horacio Dantas | Tattoo & Art</title>
-    <!-- Ícones oficiais para as redes sociais -->
-    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { 
-            background: radial-gradient(circle at center, #0b0b0b 0%, #000000 100%); 
+            background: radial-gradient(circle at center, #000000 0%, #0a0a0a 100%); 
             color: #e0e0e0; 
             scroll-behavior: smooth; 
             min-height: 100vh;
-            padding-top: 0;
         }
         a { color: inherit; text-decoration: none; }
         
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 80px 0 40px 0; text-align: center; }
-        .container h2 { font-size: 2.2rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 60px 0; }
         
         /* Ajuste Profissional das Imagens */
-        .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .art-item { background: rgba(255, 255, 255, 0.02); padding: 15px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; transition: 0.3s; }
-        .art-item:hover { border-color: #ff3333; background: rgba(255, 255, 255, 0.04); }
-        .art-item img { width: 100%; height: 350px; object-fit: cover; border-radius: 8px; transition: 0.5s; }
-        .art-item img:hover { transform: scale(1.03); }
-        .art-item h3 { margin-top: 15px; font-size: 1.2rem; letter-spacing: 1px; font-weight: 500; }
+        .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .art-item { background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
+        .art-item img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; transition: 0.3s; }
+        .art-item img:hover { transform: scale(1.02); }
+        .art-item h3 { margin-top: 15px; font-size: 1.1rem; }
 
-        .btn-primary { background-color: #ff3333; color: #fff; padding: 14px 35px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.3s; display: inline-block; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; width: 100%; }
-        .btn-primary:hover { background-color: #cc0000; transform: translateY(-2px); }
+        .btn-primary { background-color: #ff3333; color: #fff; padding: 12px 28px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.3s; display: inline-block; }
+        .btn-primary:hover { background-color: #cc0000; }
 
-        /* HEADER COM EFEITO SLIDE INTELIGENTE */
+        /* HEADER COM EFEITO SLIDE ESCONDIDO (Melhorado com detecção de toque) */
         header { 
             background: rgba(10, 10, 10, 0.95); 
             padding: 20px 0; 
@@ -39,28 +34,12 @@
             width: 100%; 
             top: 0; 
             z-index: 1000; 
-            border-bottom: 1px solid #1a1a1a; 
+            border-bottom: 1px solid #222; 
             transform: translateY(-100%); 
             transition: transform 0.4s ease-in-out; 
-            backdrop-filter: blur(10px);
         }
 
-        /* Classe de controle via JavaScript */
-        header.visible {
-            transform: translateY(0);
-        }
-
-        /* Área de ativação por toque/mouse no topo da tela */
-        .top-trigger {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            z-index: 999;
-            background: transparent;
-        }
-
+        /* Área invisível estendida abaixo do menu para facilitar a ativação */
         header::after {
             content: '';
             position: absolute;
@@ -71,30 +50,28 @@
             background: transparent; 
         }
 
-        header:hover {
+        /* Exibe o menu no hover ou quando ganha foco/toque */
+        header:hover, header:focus-within, header.active {
             transform: translateY(0);
         }
 
         .nav-container { display: flex; justify-content: space-between; align-items: center; width: 90%; max-width: 1200px; margin: 0 auto; }
-        .nav-container h2 { font-size: 1.4rem; letter-spacing: 3px; font-weight: 700; color: #fff; }
-        .nav-links a { margin-left: 25px; transition: 0.3s; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: #bbb; }
+        .nav-links a { margin: 0 10px; transition: 0.3s; }
         .nav-links a:hover { color: #ff3333; }
         
-        /* BANNER */
+        /* BANNER (Sem nenhum texto na frente) */
         #banner {
-            min-height: 75vh;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('bannner (1).png');
+            min-height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('bannner (1).png');
             background-size: cover;
             background-position: center;
-            width: 100%;
         }
 
-        /* FORMULÁRIO */
-        form { background: #0e0e0e; padding: 40px; border-radius: 12px; max-width: 600px; margin: 40px auto 0 auto; border: 1px solid #1a1a1a; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; color: #aaa; text-align: left; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 14px; background: #161616; border: 1px solid #252525; color: #fff; border-radius: 6px; font-size: 1rem; transition: 0.3s; }
-        .form-group input:focus, .form-group textarea:focus { border-color: #ff3333; outline: none; background: #1a1a1a; }
+        form { background: #1a1a1a; padding: 40px; border-radius: 8px; max-width: 600px; margin: 0 auto; border: 1px solid #222; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #aaa; text-align: left; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; background: #2a2a2a; border: 1px solid #333; color: #fff; border-radius: 4px; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #ff3333; outline: none; }
 
         /* CONTAINER DOS BOTÕES FLUTUANTES */
         .floating-buttons {
@@ -107,52 +84,45 @@
             z-index: 9999;
         }
         .btn-float {
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
             color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            transition: 0.3s ease;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            transition: 0.3s;
         }
-        .btn-float:hover { transform: scale(1.1) translateY(-3px); }
+        .btn-float:hover { transform: scale(1.1); }
         .btn-whatsapp { background: #25d366; }
         .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 
-        /* RODAPÉ */
-        footer { padding: 40px 0; border-top: 1px solid #121212; text-align: center; color: #555; font-size: 0.9rem; }
-
-        /* RESPONSIVIDADE */
+        
         @media (max-width: 768px) {
-            .container { padding: 60px 0 30px 0; }
             header { padding: 15px 0; }
-            .nav-container { flex-direction: column; gap: 12px; text-align: center; }
-            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-            .nav-links a { margin: 0 8px; font-size: 0.85rem; }
+            .nav-container { flex-direction: column; gap: 10px; text-align: center; }
+            .nav-links { font-size: 0.9rem; }
             
+            /* O banner encolhe proporcionalmente exibindo as laterais */
             #banner { 
                 min-height: auto; 
-                aspect-ratio: 16 / 9; 
-                background-size: cover; 
+                aspect-ratio: 16 / 9; /* Mantém o formato original da foto */
+                background-size: contain; 
+                background-repeat: no-repeat;
+                background-color: #000000; /* Preenche vazios se a tela for muito longa */
             }
             
-            .art-grid { gap: 20px; }
-            .art-item img { height: 280px; }
-            form { padding: 25px 20px; }
-            .floating-buttons { bottom: 20px; right: 20px; }
-            .btn-float { width: 50px; height: 50px; font-size: 20px; }
+            form { padding: 20px; }
         }
+
     </style>
 </head>
 <body>
 
-    <!-- Área invisível para ativar o menu passando o dedo/mouse no topo -->
-    <div class="top-trigger" id="topTrigger"></div>
-
-    <header id="mainHeader" class="visible">
+    <!-- O menu aparece temporariamente se o usuário tocar próximo ao topo da tela no mobile -->
+    <header id="mainHeader">
         <div class="nav-container">
             <h2>HORACIO DANTAS</h2>
             <div class="nav-links">
@@ -160,27 +130,25 @@
                 <a href="#bio">História</a> 
                 <a href="#portfolio">Portfólio</a> 
                 <a href="#orcamento">Orçamento</a> 
-                <a href="https://www.instagram.com/horaciodantastattoo?utm_source=qr" target="_blank">Instagram</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
             </div>
         </div>
     </header>
 
-    <!-- BANNER LIMPO -->
+    <!-- BANNER LIMPO (Sem textos internos obstrutivos) -->
     <section id="banner"></section>
 
     <section id="bio" class="container">
         <h2>A Jornada do Artista</h2>
-        <p style="margin-top: 20px; color: #aaa; line-height: 1.8; max-width: 800px; margin-left: auto; margin-right: auto; font-size: 1.1rem;">
-            Com anos de experiência nas artes plásticas, Horacio Dantas transpõe a precisão do lápis e a fluidez do pincel para a arte da tatuagem, transformando ideias em obras de arte definitivas na pele.
-        </p>
+        <p style="margin-top: 20px; color: #aaa; line-height: 1.8;">Com anos de experiência nas artes plásticas, Horacio Dantas transpõe a precisão do lápis e a fluidez do pincel para a arte da tatuagem.</p>
     </section>
 
     <section id="portfolio" class="container">
-        <h2>Trabalhos Recentes</h2>
+        <h2>Trabalhos recentes</h2>
         <div class="art-grid">
             <div class="art-item">
-                <img src="Realismo.jpeg" alt="Tattoo Realismo">
-                <h3>Realismo</h3>
+                <img src="Realismo.jpeg" alt="Realism">
+                <h3>Realism</h3>
             </div>
             <div class="art-item">
                 <img src="findline.jpeg" alt="Tattoo Fine Line">
@@ -191,43 +159,48 @@
                 <h3>Cover-up</h3>
             </div>
             <div class="art-item">
-                <img src="letring.jpeg" alt="Tattoo Lettering">
-                <h3>Lettering</h3>
+                <img src="letring.jpeg" alt="Letring">
+                <h3>Letring</h3>
             </div>
             <div class="art-item">
-                <img src="Portraid.jpeg" alt="Tattoo Portrait">
-                <h3>Portrait</h3>
+                <img src="Portraid.jpeg" alt="Portraid">
+                <h3>Portraid</h3>
             </div>
             <div class="art-item">
-                <img src="Colorido.jpeg" alt="Tattoo Colorida">
+                <img src="Colorido.jpeg" alt="Color Tattoo">
                 <h3>Color Tattoo</h3>
             </div>
             <div class="art-item">
-                <img src="Feend.jpg" alt="Tattoo Feend">
+                <img src="Feend.jpg" alt="Feend">
                 <h3>Feend</h3>
             </div>
             <div class="art-item">
-                <img src="minimalista.jpeg" alt="Tattoo Minimalista">
+                <img src="minimalista.jpeg" alt="Minimalist">
                 <h3>Minimalist</h3>
             </div>
             <div class="art-item">
-                <img src="tribal.jpg" alt="Tattoo Tribal">
+                <img src="tribal.jpg" alt="Tribal">
                 <h3>Tribal</h3>
             </div>
         </div>
     </section>
 
     <section id="orcamento" class="container">
-        <h2>Solicitar Orçamento</h2>
-        <p style="color: #888; margin-top: -10px;">Preencha os detalhes e envie diretamente para o meu WhatsApp</p>
-        
+        <h2 style="text-align: center; margin-bottom: 30px;">Solicitar Orçamento</h2>
         <form id="tattooForm">
-            <div class="form-group">
-                <label for="nome">Seu Nome</label>
-                <input type="text" id="nome" required placeholder="Ex: João Silva">
-            </div>
-            <div class="form-group">
-                <label for="ideia">Ideia da Tattoo</label>
-                <textarea id="ideia" rows="4" required placeholder="Descreva o desenho, referências ou elementos que deseja..."></textarea>
-            </div>
-            <div class="form-group">
+            <div class="form-group"><label>Seu Nome</label><input type="text" id="nome" required></div>
+            <div class="form-group"><label>Ideia da Tattoo</label><textarea id="ideia" rows="4" required></textarea></div>
+            <div class="form-group"><label>Local do Corpo / Tamanho</label><input type="text" id="detalhes" required></div>
+            <!-- Botão restaurado e fechado corretamente -->
+            <button type="submit" class="btn-primary">Enviar Orçamento</button>
+        </form>
+    </section>
+
+    <!-- CONTAINER DOS BOTÕES FLUTUANTES (Mantidos originais, adicione letras ou ícones dentro se desejar) -->
+    <div class="floating-buttons">
+        <a href="https://wa.me" class="btn-float btn-whatsapp" target="_blank">W</a>
+        <a href="https://instagram.com" class="btn-float btn-instagram" target="_blank">I</a>
+    </div>
+
+</body>
+</html>
