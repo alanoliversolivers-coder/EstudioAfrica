@@ -131,7 +131,8 @@
             background-size: cover;
             background-position: center;
         }
-                form {
+        
+        form {
             background: #1a1a1a;
             padding: 40px;
             border-radius: 8px;
@@ -209,8 +210,38 @@
             );
         }
 
-        @media (max-width: 768px) {
+        /* ESTILO DO RODAPÉ ADICIONADO */
+        footer {
+            background: #0a0a0a;
+            padding: 30px 0;
+            border-top: 1px solid #222;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 40px;
+        }
 
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .developer-credit a {
+            color: #ff3333;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .developer-credit a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+        }
+
+        @media (max-width: 768px) {
             header {
                 padding: 15px 0;
             }
@@ -252,8 +283,7 @@
             <a href="#portfolio">Portfólio</a>
             <a href="#orcamento">Orçamento</a>
 
-            <a href="https://www.instagram.com/horaciodantastattoo"
-               target="_blank">
+            <a href="https://www.instagram.com/horaciodantastattoo" target="_blank">
                 Instagram
             </a>
         </div>
@@ -271,7 +301,7 @@
         Mas foi no dia 28 de outubro de 2020 que minha história na tatuagem
         oficialmente começou. Através de intensos estudos com grandes
         mestres da cena, venho dia após dia, ano após ano, me dedicando
-        integralmente à tatuagem e ao realismo. Com anos de experiência
+        integralmente à tatuagem and ao realismo. Com anos de experiência
         prévia nas artes plásticas, transponho a precisão do lápis e a
         fluidez do pincel para a pele, tudo para entregar um trabalho
         excelente e uma experiência incrível a cada cliente.
@@ -282,7 +312,7 @@
     <h2 style="text-align:left;">Trabalhos recentes</h2>
 
     <div class="art-grid">
-                <div class="art-item">
+        <div class="art-item">
             <img src="Realismo.jpeg" alt="Realism">
             <h3>Realism</h3>
         </div>
@@ -311,98 +341,10 @@
             <img src="Colorido.jpeg" alt="Color Tattoo">
             <h3>Color Tattoo</h3>
         </div>
-
-        <div class="art-item">
-            <img src="Feend.jpg" alt="Fiend">
-            <h3>Fiend</h3>
-        </div>
-
-        <div class="art-item">
-            <img src="minimalista.jpeg" alt="Minimalist">
-            <h3>Minimalist</h3>
-        </div>
-
-        <div class="art-item">
-            <img src="tribal.jpg" alt="Tribal">
-            <h3>Tribal</h3>
-        </div>
     </div>
 </section>
 
-<section id="orcamento" class="container">
-    <h2 style="text-align:center; margin-bottom:30px;">
-        Solicitar Orçamento
-    </h2>
-
-    <form id="tattooForm">
-
-        <div class="form-group">
-            <label>Seu Nome</label>
-            <input type="text" id="nome" required>
-        </div>
-
-        <div class="form-group">
-            <label>Ideia da Tattoo</label>
-            <textarea id="ideia" rows="4" required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>Local do Corpo / Tamanho</label>
-            <input type="text" id="detalhes" required>
-        </div>
-
-        <button type="submit" class="btn-primary">
-            Enviar Orçamento
-        </button>
-
-    </form>
-</section>
-
-<div class="floating-buttons">
-
-    <a href="https://wa.me/5511953746145"
-       class="btn-float btn-whatsapp"
-       target="_blank"
-       aria-label="WhatsApp">
-
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <a href="https://www.instagram.com/horaciodantastattoo"
-       class="btn-float btn-instagram"
-       target="_blank"
-       aria-label="Instagram">
-
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-
-</div>
-<script>
-document.getElementById('tattooForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const nome = document.getElementById('nome').value;
-    const ideia = document.getElementById('ideia').value;
-    const detalhes = document.getElementById('detalhes').value;
-
-    const mensagem =
-`Olá Horacio!
-
-Nome: ${nome}
-
-Ideia da Tattoo:
-${ideia}
-
-Local do Corpo / Tamanho:
-${detalhes}`;
-
-    window.open(
-        'https://wa.me/5511953746145?text=' +
-        encodeURIComponent(mensagem),
-        '_blank'
-    );
-});
-</script>
+<!-- RODAPÉ ADICIONADO NO FINAL DO PROJETO -->
 <footer>
     <div class="footer-container">
         <p>© 2026 Horacio Dantas. Todos os direitos reservados.</p>
@@ -412,7 +354,5 @@ ${detalhes}`;
     </div>
 </footer>
 
-</body>
-</html
 </body>
 </html>
